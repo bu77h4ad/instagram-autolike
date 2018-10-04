@@ -1,10 +1,13 @@
 from InstagramAPI import InstagramAPI
 import requests
 import time
+import datetime
+
 j=-1
+like=0
 while 1:
 	j=j+1
-	tag = ['stv','stavropol', 'russia']
+	tag = ['stv','фото', 'russia']
 	if j >= len(tag):
 		j=0
 	r = requests.get('https://www.instagram.com/explore/tags/'+ tag[j] + '/',  timeout=(3.05, 27) )     
@@ -19,15 +22,21 @@ while 1:
 		text = text[id+50 :]
 		
 
-	api = InstagramAPI("user", "pas")
+	api = InstagramAPI("login", "pass")
 	if (api.login()):
 	    #api.getSelfUserFeed()  # get self user feed
 	    #print(api.LastJson)  # print last response JSON    
 	    print("Login succes!")
 	    for i in range(0,len(ids)):
-	    	print ("like ", ids[i], 'tag ',tag[j])
-	    	api.like(ids[i])
+	    	now = datetime.datetime.now().strftime("%Y-%m-%d %X")
+	    	print (now, "like is:",like, ids[i], 'tag ',tag[j])
+	    	try:
+	    		api.like(ids[i])
+	    		like = like + 1	    		
+	    	except:
+	    		continue
+	    	time.sleep(50)
 	else:
 	    print("Can't login!")
-	print ("sleep 60")
-	time.sleep(600)
+	print ("sleep 30")
+	time.sleep(300)
