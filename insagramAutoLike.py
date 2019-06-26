@@ -4,7 +4,7 @@ import datetime
 import sys
 
 if (len(sys.argv) < 5 ) : 
-    print("\nНе верное количество параметров в строке. \nОжидается: логин, пароль, время лайка в секундах, hashtag. \nНапример: python3 insagramAutoLike.py xxx@xxx.com pass 60 russia")  
+    print("\nНе верное количество параметров в строке. \nОжидается: логин, пароль, время между лайками в секундах, hashtag. \nНапример: python3 insagramAutoLike.py xxx@xxx.com pass 60 russia")  
     quit()
 print ('|'+sys.argv[1]+'|')
 
@@ -46,4 +46,5 @@ while True:
             print("Can't login!")
         
         
+
 
